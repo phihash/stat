@@ -4,6 +4,7 @@ interface Prefecture {
   prefCode: number
   prefName: string
 }
+import PrefectureCheckbox from './prefectureCheckbox'
 
 const Prefectures = () => {
   const [prefectures, setPrefectures] = useState<Prefecture[]>([])
@@ -35,13 +36,11 @@ const Prefectures = () => {
           {selectedPrefectures}
           {prefectures.map((prefecture) => (
             <div key={prefecture.prefCode} className="flex">
-              <input
-                type="checkbox"
-                name={prefecture.prefName}
-                id={prefecture.prefName}
-                onChange={() => handleCheckboxChange(prefecture.prefCode)}
+              <PrefectureCheckbox
+                prefName={prefecture.prefName}
+                prefCode={prefecture.prefCode}
+                onChange={handleCheckboxChange}
               />
-              <label htmlFor={prefecture.prefName}>{prefecture.prefName}</label>
             </div>
           ))}
         </ul>
